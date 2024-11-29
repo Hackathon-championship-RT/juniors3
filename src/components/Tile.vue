@@ -25,21 +25,21 @@ export default {
 </script>
 
 <template>
-  <img v-if="selectable && chosen" class="img chosen"
-       :style="{'left':(tile['x'] * 89 + tile['z']*20)+'px',
-       'top':(tile['y']*109 + 100 - tile['z']*20)+'px',
-       'z-index': getZIndex(tile)}"
-       :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
-  <img v-else-if="selectable" class="img selectable"
-       :style="{'left':(tile['x'] * 89 + tile['z']*20)+'px',
-       'top':(tile['y']*109 + 100 - tile['z']*20)+'px',
-       'z-index':getZIndex(tile)}"
-       :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
-  <img v-else class="img"
-       :style="{'left':(tile['x'] * 89 + tile['z']*20)+'px',
-       'top':(tile['y']*109 + 100 - tile['z']*20)+'px',
-       'z-index':getZIndex(tile)}"
-       :src="getSrc(tile['type'])" alt="no"/>
+  <img v-if="selectable && chosen" class="img chosen" :style="{
+    'left': (tile.x * 89 + tile.z * 20) + 'px',
+    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
+    'z-index': getZIndex(tile)
+  }" :src="getSrc(tile.type)" @click="$emit('choose', tile)" alt="no" />
+  <img v-else-if="selectable" class="img selectable" :style="{
+    'left': (tile.x * 89 + tile.z * 20) + 'px',
+    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
+    'z-index': getZIndex(tile)
+  }" :src="getSrc(tile.type)" @click="$emit('choose', tile)" alt="no" />
+  <img v-else class="img" :style="{
+    'left': (tile.x * 89 + tile.z * 20) + 'px',
+    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
+    'z-index': getZIndex(tile)
+  }" :src="getSrc(tile.type)" alt="no" />
 </template>
 
 <style scoped>
@@ -47,7 +47,8 @@ export default {
   position: absolute;
 }
 
-.selectable:hover, .chosen {
+.selectable:hover,
+.chosen {
   filter: brightness(80%)
 }
 </style>
