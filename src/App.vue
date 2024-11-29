@@ -51,7 +51,16 @@ export default {
     <Header/>
     <main class="" style="min-height: 100vh;">
       <Board
-          :tiles="[{x:0,y:0,z:0,type: 0},{x:0,y:0,z:1,type: 0},{x:0,y:0,z:2,type: 0},{x:1,y:0,z:0,type: 0},{x:0,y:1,z:0,type: 0},{x:1,y:1,z:0,type: 0},{x:1,y:1,z:1,type: 0}]"/>
+          :tiles="[{x:0,y:0.5,z:0,type: 0},
+                   {x:1,y:0,z:0,type: 0},
+                   {x:1,y:0,z:1,type: 0},
+                   {x:1,y:0,z:2,type: 0},
+                   {x:2,y:0,z:0,type: 0},
+                   {x:1,y:1,z:0,type: 0},
+                   {x:2,y:1,z:0,type: 0},
+                   {x:2,y:1,z:1,type: 0},
+                   {x:3,y:0.5,z:0,type: 0}]"
+      />
     </main>
   </div>
 </template>
