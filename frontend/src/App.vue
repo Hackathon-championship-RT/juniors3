@@ -144,7 +144,7 @@ export default {
           name: localStorage.getItem('nickname'),
           time: localStorage.getItem('time'),
           reshuffles: this.countReshuffles,
-          difficulty: "hard"
+          difficulty: localStorage.getItem('difficulty')
         }
       })
     },
