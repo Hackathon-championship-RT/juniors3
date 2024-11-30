@@ -15,10 +15,81 @@ export default {
   },
   methods: {
     getSrc(type) {
-      if (type===0){
-        return "/src/assets/bmw.png"
-      } else {
-        return "/src/assets/mitsubishi.png"
+      switch (type) {
+        case 0:
+          return "/src/assets/cars/lada.png"
+        case 1:
+          return "/src/assets/cars/moskvich.png"
+        case 2:
+          return "/src/assets/cars/uaz.png"
+        case 3:
+          return "/src/assets/cars/honda.png"
+        case 4:
+          return "/src/assets/cars/infinity.png"
+        case 5:
+          return "/src/assets/cars/mitsubishi.png"
+        case 6:
+          return "/src/assets/cars/lexus.png"
+        case 7:
+          return "/src/assets/cars/mazda.png"
+        case 8:
+          return "/src/assets/cars/nissan.png"
+        case 9:
+          return "/src/assets/cars/tayota.png"
+        case 10:
+          return "/src/assets/cars/chevrolet.png"
+        case 11:
+          return "/src/assets/cars/ford.png"
+        case 12:
+          return "/src/assets/cars/tesla.png"
+        case 13:
+          return "/src/assets/cars/audi.png"
+        case 14:
+          return "/src/assets/cars/bmw.png"
+        case 15:
+          return "/src/assets/cars/mercedes.png"
+        case 16:
+          return "/src/assets/cars/porsche.png"
+        case 17:
+          return "/src/assets/cars/volkswagen.png"
+        case 18:
+          return "/src/assets/cars/opel.png"
+        case 19:
+          return "/src/assets/cars/kia.png"
+        case 20:
+          return "/src/assets/cars/hyundai.png"
+        case 21:
+          return "/src/assets/cars/ferrari.png"
+        case 22:
+          return "/src/assets/cars/lamborghini.png"
+        case 23:
+          return "/src/assets/cars/rollsroyce.png"
+        case 24:
+          return "/src/assets/cars/bugatti.png"
+        case 25:
+          return "/src/assets/cars/jaguar.png"
+        case 26:
+          return "/src/assets/cars/skoda.png"
+        case 27:
+          return "/src/assets/cars/peugeot.png"
+        case 28:
+          return "/src/assets/cars/landrover.png"
+        case 29:
+          return "/src/assets/cars/citroen.png"
+        case 30:
+          return "/src/assets/cars/renault.png"
+        case 31:
+          return "/src/assets/cars/cadillac.png"
+        case 32:
+          return "/src/assets/cars/fiat.png"
+        case 33:
+          return "/src/assets/cars/jeep.png"
+        case 34:
+          return "/src/assets/cars/subaru.png"
+        case 35:
+          return "/src/assets/cars/volvo.png"
+        default:
+          return "/src/assets/empty.png"
       }
     },
     getX() {

@@ -1,3 +1,5 @@
+import Rnd from "@/services/Rnd.js";
+
 class FigureService {
     turtle = [{x: 1, y: 0, z: 0},
         {x: 2, y: 0, z: 0},
@@ -145,9 +147,17 @@ class FigureService {
         {x: 6.5, y: 3.5, z: 4}
     ]
 
-    getTurtle() {
-        return this.turtle.map((e) => {
-            return {...e, type: 0}
+    getTurtleHard() {
+        const types = [];
+        for (let i = 0; i < 36; i++) {
+            types.push(i)
+            types.push(i)
+            types.push(i)
+            types.push(i)
+        }
+        Rnd.shuffle(types)
+        return this.turtle.map((e, index) => {
+            return {...e, type: types[index]}
         })
     }
 }

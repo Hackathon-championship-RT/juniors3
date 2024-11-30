@@ -104,7 +104,7 @@ export default {
       this.isShowHint = true
     },
     startNewGame() {
-      this.tiles = FigureService.getTurtle()
+      this.tiles = FigureService.getTurtleHard()
       this.deleted = []
       this.checkGame()
     },
