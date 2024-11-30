@@ -129,8 +129,6 @@ export default {
     <div v-if="this.gameStatus !== 'game'"
          style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
          class="bg-gray-900 ">
-      style="z-index: 2000000000;position: absolute;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
-      class="bg-gray-900 ">
     </div>
     <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" @reshuffle="reshuffle"/>
     <main class="flex justify-center items-center"
