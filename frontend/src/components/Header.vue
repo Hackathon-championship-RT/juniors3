@@ -25,8 +25,7 @@ export default {
           }
         }
       }
-      localStorage.removeItem('time')
-      localStorage.setItem('time', this.time);
+      localStorage.setItem('time', 5);
     },
   },
   mounted() {
