@@ -12,18 +12,6 @@ export default {
   data() {
     return {
       start: false,
-      tiles: [
-        { x: 0, y: 0.5, z: 0, type: 0 },
-        { x: 1, y: 0, z: 0, type: 0 },
-        { x: 1, y: 0, z: 1, type: 0 },
-        { x: 1, y: 0, z: 2, type: 0 },
-        { x: 2, y: 0, z: 0, type: 0 },
-        { x: 1, y: 1, z: 0, type: 0 },
-        { x: 2, y: 1, z: 0, type: 0 },
-        { x: 2, y: 1, z: 1, type: 0 },
-        { x: 3, y: 0.5, z: 0, type: 0 },
-        { x: 4, y: 0.5, z: 0, type: 0 }],
-      deletedtiles: []
     }
   },
   methods: {
@@ -41,13 +29,13 @@ export default {
     DeleteTiles(tiles) {
       let tile1 = tiles[0];
       let tile2 = tiles[1];
-      for (let i; i < this.tiles.length; i++) {
+      for (let i = 0; i < this.tiles.length; i++) {
         if (tile1 === this.tiles[i]) {
           this.deletedtiles.push(tile1);
-          this.tiles.splice(i, 1)
+          this.tiles.splice(i, 1) 
         }
       };
-      for (let i; i < this.tiles.length; i++) {
+      for (let i = 0; i < this.tiles.length; i++) {
         if (tile2 === this.tiles[i]) {
           this.deletedtiles.push(tile2);
           this.tiles.splice(i, 1)

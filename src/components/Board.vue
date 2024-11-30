@@ -1,9 +1,10 @@
 <script>
 import Tile from "@/components/Tile.vue";
-import { toHandlerKey } from "vue";
+import { UseFieldStore } from "@/stores/TilesStore";
 
 export default {
   name: "Board",
+
   components: { Tile },
   props: {
     tiles: {
@@ -13,8 +14,12 @@ export default {
   },
   data() {
     return {
+      usetiles: UseFieldStore,
       chosen: {
-
+        x: "",
+        y: '',
+        z: '',
+        type: ''
       }
     }
   },
@@ -33,23 +38,24 @@ export default {
       return !up && !(left && right)
     },
     chooseTile(tile) {
-      if (!this.chosen.x) {
+      console.log(123)
+      if (this.chosen.x == "") {
         this.chosen = tile
         console.log(this.chosen)
         console.log('mistake')
       } else {
         if (this.chosen.type == tile.type) {
           console.log('Удалим')
-          $emit('delete', [this.chosen, tile]);
+          this.usetiles.deleted([this.chosen, tile])
         } else {
           this.chosen = {}
           console.log('1323')
         }
       }
     },
-    sendTiles(){
+    sendTiles() {
       this.$emit();
-      
+
     }
   }
 }
