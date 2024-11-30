@@ -1,10 +1,9 @@
-/* При запуске проекта: */
-npm i 
+/* При запуске проекта: npm i */
 /* Запуск фронта: 
 cd frontend 
 npm i 
 npm run dev */
-/* Нужно установить Postgre SQL, создать базу данных Mahjong и создать таблицу командой: 
+/* Нужно установить Postgre SQL, создать базу данных mahjong и создать таблицу командой: 
 create table results(
     id         serial
         constraint results_pk
