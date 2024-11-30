@@ -6,6 +6,7 @@ import Lose from "./components/Lose.vue";
 import Win from "./components/Win.vue";
 import LeaderBoard from "./components/LeaderBoard.vue";
 import axios from "axios";
+import Rnd from "@/services/Rnd.js";
 
 export default {
   components: {
@@ -17,10 +18,10 @@ export default {
   },
   data() {
     return {
-      tiles: [{ x: 0, y: 0, z: 0, type: 0 },
-      { x: 1, y: 0, z: 0, type: 1 },
-      { x: 0, y: 1, z: 0, type: 0 },
-      { x: 0, y: 0, z: 1, type: 1 }],
+      tiles: [{x: 0, y: 0, z: 0, type: 0},
+        {x: 1, y: 0, z: 0, type: 1},
+        {x: 0, y: 1, z: 0, type: 0},
+        {x: 0, y: 0, z: 1, type: 1}],
       deleted: [],
       moves: [],
       start: false,
@@ -120,8 +121,12 @@ export default {
       this.checkGame()
     },
     reshuffle() {
+      const types = this.tiles.map((e) => e.type)
+      Rnd.shuffle(types)
+      this.tiles = this.tiles.map((e, index) => {
+        return {...e, type: types[index]}
+      })
       this.countReshuffles++
-      console.log(this.countReshuffles)
       this.checkGame()
     },
     LeaderBoard() {
@@ -151,19 +156,19 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game' || isLeaderBoard"
-      style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
-      class="bg-gray-900 ">
+         style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+         class="bg-gray-900 ">
     </div>
     <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame"
-      @leaderBoard="LeaderBoard()" @reshuffle="reshuffle" />
+            @leaderBoard="LeaderBoard()" @reshuffle="reshuffle"/>
     <main class="flex justify-center items-center"
-      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
+          style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
-        @restart="startNewGame" @reshuffle="reshuffle" />
+            @restart="startNewGame" @reshuffle="reshuffle"/>
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"
-        @sendname="SendName()" />
-      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
-      <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;" />
+           @sendname="SendName()"/>
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
+      <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;"/>
     </main>
   </div>
 </template>
