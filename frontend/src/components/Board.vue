@@ -39,7 +39,10 @@ export default {
     },
     chooseTile(tile) {
       this.$emit('choose', tile)
-    }
+    },
+  },
+  mounted(){
+
   }
 }
 </script>
