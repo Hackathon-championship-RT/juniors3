@@ -5,6 +5,7 @@ const PORT = 5252
 
 const app = express()
 app.get('/', async (req, res) => {
+    console.log(req.query)
     try {
         if (req.query['difficulty'] !== undefined) {
             res.status(200).json(await sql`SELECT *
@@ -20,6 +21,7 @@ app.get('/', async (req, res) => {
     }
 })
 app.get('/add_result', async (req, res) => {
+    console.log(req.query)
     try {
         await sql`INSERT INTO results (name, time, reshuffles, difficulty)
                   VALUES (${req.query['name']}, ${req.query['time']}, ${req.query['reshuffles']},

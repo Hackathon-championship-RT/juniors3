@@ -46,7 +46,7 @@ export default {
 <template>
   <div>
     <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)"
-      :chosen="tile === chosen || (showHint && hint.indexOf(tile) !== -1)" :key="tile" @choose="chooseTile(tile)" />
+      :chosen="tile === chosen" :hint="showHint && hint.indexOf(tile) !== -1" :key="tile" @choose="chooseTile(tile)" />
   </div>
 </template>
 

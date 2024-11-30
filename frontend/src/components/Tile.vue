@@ -11,6 +11,9 @@ export default {
     },
     chosen: {
       type: Boolean
+    },
+    hint: {
+      type: Boolean
     }
   },
   methods: {
@@ -109,6 +112,12 @@ export default {
     },
     getShadowZIndex() {
       return Math.floor((this.tile['z'] - 1) * 100000 - this.tile['x'] * 100 + this.tile['y'] * 100 + 100000)
+    },
+    getHintX() {
+      return this.tile['x'] * 89 + this.tile['z'] * 20 + 20
+    },
+    getHintY() {
+      return this.tile['y'] * 109 + 80 - this.tile['z'] * 20
     }
   }
 }
@@ -117,22 +126,23 @@ export default {
 <template>
   <div>
     <img draggable="false" v-if="selectable && chosen" class="img chosen" :style="{
-      'left': getX() + 'px',
-      'top': getY() + 'px',
-      'z-index': getZIndex()
-    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no" />
+      'left': this.getX() + 'px',
+      'top': this.getY() + 'px',
+      'z-index': this.getZIndex()
+    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
     <img draggable="false" onmousedown="off" v-else-if="selectable" class="img selectable" :style="{
-      'left': getX() + 'px',
-      'top': getY() + 'px',
-      'z-index': getZIndex()
-    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no" />
+      'left': this.getX() + 'px',
+      'top': this.getY() + 'px',
+      'z-index': this.getZIndex()
+    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
     <img draggable="false" v-else class="img" :style="{
-      'left': getX() + 'px',
-      'top': getY() + 'px',
-      'z-index': getZIndex()
-    }" :src="getSrc(tile['type'])" alt="no" />
+      'left': this.getX() + 'px',
+      'top': this.getY() + 'px',
+      'z-index': this.getZIndex()
+    }" :src="getSrc(tile['type'])" alt="no"/>
     <img draggable="false" class="shadow" src="/src/assets/shadow.png"
-      :style="{ 'left': getShadowX() + 'px', 'top': getShadowY() + 'px', 'z-index': getShadowZIndex() }" alt="no" />
+         :style="{ 'left': this.getShadowX() + 'px', 'top': this.getShadowY() + 'px', 'z-index': this.getShadowZIndex() }" alt="no"/>
+    <div v-if="hint" class="hint" :style="{'left': this.getHintX() + 'px','top': this.getHintY() + 'px','z-index': 1000000000}"></div>
   </div>
 </template>
 
@@ -142,7 +152,7 @@ export default {
   user-select: none;
 }
 
-.selectable, .chosen{
+.selectable, .chosen {
   cursor: pointer;
 }
 
@@ -156,5 +166,14 @@ export default {
   opacity: 40%;
   filter: blur(5px);
   user-select: none;
+  pointer-events: none;
+}
+
+.hint {
+  position: absolute;
+  width: 92px;
+  height: 112px;
+  border: 3px solid blue;
+  pointer-events: none;
 }
 </style>
