@@ -15,7 +15,11 @@ export default {
   },
   methods: {
     getSrc(type) {
-      return "/src/assets/bmw.png"
+      if (type===0){
+        return "/src/assets/bmw.png"
+      } else {
+        return "/src/assets/mitsubishi.png"
+      }
     },
     getX() {
       return this.tile['x'] * 89 + this.tile['z'] * 20
