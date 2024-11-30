@@ -181,4 +181,8 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style>
+body{
+  background-color: mediumspringgreen;
+}
+</style>
