@@ -14,14 +14,13 @@ export default {
   },
   data() {
     return {
-      tiles: [{x: 0, y: 0, z: 0, type: 0}, {x: 1, y: 0, z: 0, type: 0}, {x: 0, y: 1, z: 0, type: 0}, {
+      tiles: [{ x: 0, y: 0, z: 0, type: 0 }, { x: 1, y: 0, z: 0, type: 0 }, { x: 0, y: 1, z: 0, type: 0 }, {
         x: 1,
         y: 1,
         z: 0,
         type: 0
       }],
       deleted: [],
-      tiles: FigureService.turtle,
       moves: [],
       start: false,
       chosen: undefined,
@@ -123,15 +122,15 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game'"
-         style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
-         class="bg-gray-900 ">
+      style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+      class="bg-gray-900 ">
     </div>
-    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame"/>
+    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" />
     <main class="flex justify-center items-center"
-          style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%; z-index: -1">
-      <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;"/>
-      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" class="w-1/4"/>
-      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
+      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%; z-index: -1">
+      <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" />
+      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" class="w-1/4" />
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>
 </template>
