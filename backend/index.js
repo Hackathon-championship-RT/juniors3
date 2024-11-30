@@ -5,6 +5,7 @@ const PORT = 5252
 
 const app = express()
 app.get('/', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", req.headers['origin'])
     console.log(req.query)
     try {
         if (req.query['difficulty'] !== undefined) {
@@ -21,6 +22,7 @@ app.get('/', async (req, res) => {
     }
 })
 app.get('/add_result', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", req.headers['origin'])
     console.log(req.query)
     try {
         await sql`INSERT INTO results (name, time, reshuffles, difficulty)
@@ -31,6 +33,13 @@ app.get('/add_result', async (req, res) => {
         console.log(e)
         res.sendStatus(400)
     }
+})
+
+app.options('/*', (req, res) => {
+    res.header("Access-Control-Allow-Methods", "POST")
+    res.header("Access-Control-Allow-Headers", "Content-type")
+    res.header("Access-Control-Allow-Origin", req.headers['origin'])
+    res.sendStatus(200)
 })
 
 try {
