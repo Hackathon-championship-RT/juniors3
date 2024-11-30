@@ -13,18 +13,15 @@ export default {
   data() {
     return {
       tiles: FigureService.turtle,
+      moves: [],
       start: false,
       chosen: undefined
     }
   },
   methods: {
-    FigureService() {
-      return FigureService
-    },
     Start() {
       console.log('start');
       this.start = true;
-      localStorage.setItem('newgame', field)
     },
     checkGame() {
       let game = localStorage.getItem('game')
@@ -51,6 +48,16 @@ export default {
       let tile1 = tiles[0];
       let tile2 = tiles[1];
       this.tiles = this.tiles.filter((e) => e !== tile1 && e !== tile2)
+      this.moves.push(tile1)
+      this.moves.push(tile2)
+    },
+    revert() {
+      if (this.moves.length > 0) {
+        this.tiles.push(this.moves[this.moves.length - 1])
+        this.moves.pop()
+        this.tiles.push(this.moves[this.moves.length - 1])
+        this.moves.pop()
+      }
     }
   },
   mounted() {
@@ -62,7 +69,7 @@ export default {
 <template>
   <start-app v-if="!start" @start="Start"></start-app>
   <div v-if="start">
-    <Header/>
+    <Header @revert="revert"/>
     <main class="" style="min-height: 100vh;">
       <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile"/>
     </main>
