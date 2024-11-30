@@ -13,6 +13,14 @@ export default {
     },
     chosen: {
       type: Object
+    },
+    hint: {
+      type: Array,
+      required: true
+    },
+    showHint: {
+      type: Boolean,
+      required: true
     }
   },
   methods: {
@@ -38,7 +46,8 @@ export default {
 
 <template>
   <div>
-    <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)" :chosen="tile === chosen" :key="tile"
+    <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)"
+          :chosen="tile === chosen || (showHint && hint.indexOf(tile)!==-1)" :key="tile"
           @choose="chooseTile(tile)"/>
   </div>
 </template>

@@ -15,7 +15,8 @@ export default {
       start: false,
       chosen: undefined,
       gameStatus: "game",
-      hint: []
+      hint: [],
+      isShowHint: false
     }
   },
   methods: {
@@ -57,6 +58,7 @@ export default {
       } else {
         this.chosen = tile
       }
+      this.isShowHint = false
     },
     deleteTiles(tiles) {
       let tile1 = tiles[0];
@@ -64,6 +66,7 @@ export default {
       this.tiles = this.tiles.filter((e) => e !== tile1 && e !== tile2)
       this.moves.push(tile1)
       this.moves.push(tile2)
+      this.checkGame()
     },
     revert() {
       if (this.moves.length > 0) {
@@ -71,6 +74,7 @@ export default {
         this.moves.pop()
         this.tiles.push(this.moves[this.moves.length - 1])
         this.moves.pop()
+        this.checkGame()
       }
     },
     isSelectable(tile) {
@@ -85,6 +89,9 @@ export default {
         }
       })
       return !up && !(left && right)
+    },
+    showHint() {
+      this.isShowHint = true
     }
   },
   mounted() {
@@ -95,9 +102,9 @@ export default {
 
 <template>
   <div>
-    <Header @revert="revert"/>
+    <Header @revert="revert" @showhint="showHint"/>
     <main class="" style="min-height: 100vh;">
-      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile"/>
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
     </main>
   </div>
 </template>
