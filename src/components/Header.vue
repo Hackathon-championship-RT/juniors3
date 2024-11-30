@@ -34,8 +34,8 @@ export default {
 
 <template>
   <header class="flex justify-around content-center h-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500">
-    <p class="text-white mt-1 hover:cursor-pointer">Выбрать уровень</p>
-    <p class="text-white mt-1 hover:cursor-pointer">Начать сначала</p>
+    <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('restart')">Выбрать уровень</p>
+    <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('update')">Начать сначала</p>
     <p class="text-white mt-1 hover:cursor-pointer">Перемешать</p>
     <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('showhint')">Подсказка</p>
     <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('revert')">Отмена хода</p>
