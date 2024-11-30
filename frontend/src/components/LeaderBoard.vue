@@ -16,11 +16,11 @@
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in players" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in hard" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
                         <p class="text-white text-md w-32">{{ player.time }}</p>
-                        <p class="text-white text-md w-26">{{ player.score }}</p>
+                        <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
                 </div>
@@ -33,11 +33,11 @@
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in players" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in medium" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
                         <p class="text-white text-md w-32">{{ player.time }}</p>
-                        <p class="text-white text-md w-26">{{ player.score }}</p>
+                        <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
                 </div>
@@ -50,11 +50,11 @@
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in players" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in easy" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
                         <p class="text-white text-md w-32">{{ player.time }}</p>
-                        <p class="text-white text-md w-26">{{ player.score }}</p>
+                        <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
                 </div>
@@ -79,7 +79,7 @@ export default {
                 { name: "Player 6", score: "140", time: 6 },
             ],
             hard: [],
-            middle: [],
+            medium: [],
             easy: []
         };
     },
