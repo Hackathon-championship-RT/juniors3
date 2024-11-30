@@ -90,6 +90,7 @@ export default {
         this.tiles.push(this.deleted[this.deleted.length - 1])
         this.deleted.pop()
         this.checkGame()
+        this.isShowHint = false
       }
     },
     isSelectable(tile) {
@@ -112,6 +113,7 @@ export default {
       this.tiles = FigureService.getTurtle("easy")
       this.deleted = []
       this.checkGame()
+      this.isShowHint = false
     },
     revertGame() {
       for (const tile of this.deleted) {
@@ -119,6 +121,7 @@ export default {
       }
       this.deleted = []
       this.checkGame()
+      this.isShowHint = false
     },
     reshuffle() {
       const types = this.tiles.map((e) => e.type)
@@ -128,6 +131,7 @@ export default {
       })
       this.countReshuffles++
       this.checkGame()
+      this.isShowHint = false
     },
     LeaderBoard() {
       this.isLeaderBoard = !this.isLeaderBoard
@@ -141,8 +145,7 @@ export default {
           reshuffles: this.countReshuffles,
           difficulty: "hard"
         }
-      },
-        console.log('send'))
+      })
     }
   },
   mounted() {
