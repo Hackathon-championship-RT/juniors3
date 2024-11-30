@@ -37,7 +37,7 @@ export default {
     <p class="text-white mt-1 hover:cursor-pointer">Выбрать уровень</p>
     <p class="text-white mt-1 hover:cursor-pointer">Начать сначала</p>
     <p class="text-white mt-1 hover:cursor-pointer">Обновить поле</p>
-    <p class="text-white mt-1 hover:cursor-pointer">Подсказка</p>
+    <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('showhint')">Подсказка</p>
     <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('revert')">Отмена хода</p>
     <p class="text-white mt-1 hover:cursor-pointer">Время: <span v-if="hour">{{ hour }}:</span>{{ min }}:{{ sec }}</p>
   </header>

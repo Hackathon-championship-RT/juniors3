@@ -13,6 +13,14 @@ export default {
     },
     chosen: {
       type: Object
+    },
+    hint: {
+      type: Array,
+      required: true
+    },
+    showHint: {
+      type: Boolean,
+      required: true
     }
   },
   methods: {
@@ -31,20 +39,6 @@ export default {
     },
     chooseTile(tile) {
       this.$emit('choose', tile)
-      // console.log(123)
-      // if (this.chosen.x == "") {
-      //   this.chosen = tile
-      //   console.log(this.chosen)
-      //   console.log('mistake')
-      // } else {
-      //   if (this.chosen.type == tile.type) {
-      //     console.log('Удалим')
-      //     this.usetiles.deleted([this.chosen, tile])
-      //   } else {
-      //     this.chosen = {}
-      //     console.log('1323')
-      //   }
-      // }
     }
   }
 }
@@ -52,7 +46,8 @@ export default {
 
 <template>
   <div>
-    <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)" :chosen="tile === chosen" :key="tile"
+    <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)"
+          :chosen="tile === chosen || (showHint && hint.indexOf(tile)!==-1)" :key="tile"
           @choose="chooseTile(tile)"/>
   </div>
 </template>
