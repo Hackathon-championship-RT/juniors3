@@ -183,6 +183,6 @@ export default {
 
 <style>
 body{
-  background-color: mediumspringgreen;
+  background-color: #007863;
 }
 </style>
