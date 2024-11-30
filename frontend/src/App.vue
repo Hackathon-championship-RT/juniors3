@@ -5,6 +5,7 @@ import FigureService from "@/services/FigureService.js";
 import Lose from "./components/Lose.vue";
 import Win from "./components/Win.vue";
 import LeaderBoard from "./components/LeaderBoard.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -127,8 +128,14 @@ export default {
       this.isLeaderBoard = !this.isLeaderBoard
     },
     async SendName(info) {
-      info.shuffles = this.countReshuffles;
-      await axios.post('', info)
+      await axios.get('add_result', {
+        params: {
+          name: info.name,
+          time: info.time,
+          reshaffles: this.countReshuffles,
+          difficulty: info.difficulty
+        }
+      })
     }
   },
   mounted() {
