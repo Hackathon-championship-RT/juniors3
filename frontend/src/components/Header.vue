@@ -6,7 +6,7 @@ export default {
       hour: 0,
       min: 0,
       sec: 0,
-      time: ""
+      time: 0,
     }
   },
   methods: {
@@ -23,8 +23,8 @@ export default {
             this.hour += 1
           }
         }
-      }
-      this.time = `${this.hour}:${this.min}:${this.sec}`
+      };
+      this.time += 1
       window.localStorage.setItem('time', this.time);
     },
   },
