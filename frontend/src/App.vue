@@ -4,13 +4,15 @@ import Board from "@/components/Board.vue";
 import FigureService from "@/services/FigureService.js";
 import Lose from "./components/Lose.vue";
 import Win from "./components/Win.vue";
+import LeaderBoard from "./components/LeaderBoard.vue";
 
 export default {
   components: {
     Board,
     Header,
     Lose,
-    Win
+    Win,
+    LeaderBoard
   },
   data() {
     return {
@@ -25,7 +27,8 @@ export default {
       gameStatus: "game",
       hint: [],
       isShowHint: false,
-      countReshuffles: 0
+      countReshuffles: 0,
+      isLeaderBoard: false
     }
   },
   methods: {
@@ -120,8 +123,12 @@ export default {
       console.log(this.countReshuffles)
       this.checkGame()
     },
-    async SendName() {
-      await axios.post('',)
+    LeaderBoard() {
+      this.isLeaderBoard = !this.isLeaderBoard
+    },
+    async SendName(info) {
+      info.shuffles = this.countReshuffles;
+      await axios.post('', info)
     }
   },
   mounted() {
@@ -132,18 +139,20 @@ export default {
 
 <template>
   <div>
-    <div v-if="this.gameStatus !== 'game'"
+    <div v-if="this.gameStatus !== 'game' || isLeaderBoard"
       style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
       class="bg-gray-900 ">
     </div>
-    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" @reshuffle="reshuffle" />
+    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame"
+      @leaderBoard="LeaderBoard()" @reshuffle="reshuffle" />
     <main class="flex justify-center items-center"
       style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
         @restart="startNewGame" @reshuffle="reshuffle" />
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"
-        @sendname="SendName()" />
+        @sendname="SendName(info)" />
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
+      <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;" />
     </main>
   </div>
 </template>

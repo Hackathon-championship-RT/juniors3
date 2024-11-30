@@ -41,5 +41,11 @@ export default {
       used: false
     }
   },
+  methods:{
+    getInfo(){
+      this.time = localStorage.getItem('time')
+      
+    }
+  }
 }
 </script>
