@@ -2,11 +2,13 @@
 import Header from "@/components/Header.vue";
 import Board from "@/components/Board.vue";
 import FigureService from "@/services/FigureService.js";
+import Lose from "./components/Lose.vue";
 
 export default {
   components: {
     Board,
     Header,
+    Lose
   },
   data() {
     return {
@@ -14,7 +16,7 @@ export default {
       moves: [],
       start: false,
       chosen: undefined,
-      gameStatus: "game",
+      gameStatus: "lose",
       hint: []
     }
   },
@@ -62,7 +64,8 @@ export default {
 <template>
   <div>
     <Header @revert="revert" />
-    <main class="" style="min-height: 100vh;">
+    <main class="flex justify-center items-center" style="min-height: 100vh;">
+      <Lose v-if="gameStatus == 'lose'" />
       <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile" />
     </main>
   </div>
