@@ -104,9 +104,9 @@ export default {
 
 <template>
   <div>
-    <Header @revert="revert" />
+    <Header @revert="revert" @showhint="showHint"/>
     <main class="" style="min-height: 100vh;">
-      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile" />
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>
 </template>
