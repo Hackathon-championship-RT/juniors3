@@ -90,13 +90,13 @@ export default {
             })
             this.hard = response.data
         },
-        async getMiddle() {
+        async getMedium() {
             let response = await axios.get('', {
                 params: {
                     difficulty: 'medium'
                 }
             })
-            this.middle = response.data
+            this.medium = response.data
         }, async getEasy() {
             let response = await axios.get('', {
                 params: {
@@ -108,7 +108,7 @@ export default {
     },
     mounted() {
         this.getHard();
-        this.getMiddle();
+        this.getMedium();
         this.getEasy();
     }
 };
