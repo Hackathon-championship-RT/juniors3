@@ -6,6 +6,7 @@ export default {
       hour: 0,
       min: 0,
       sec: 0,
+      time: `${this.hour}:${this.min}:${this.sec}`
     }
   },
   methods: {
@@ -24,6 +25,8 @@ export default {
           }
         }
       }
+      localStorage.removeItem('time')
+      localStorage.setItem('time', this.time);
     },
   },
   mounted() {
