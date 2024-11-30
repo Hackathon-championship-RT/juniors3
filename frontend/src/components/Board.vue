@@ -1,6 +1,5 @@
 <script>
 import Tile from "@/components/Tile.vue";
-import {UseFieldStore} from "@/stores/TilesStore";
 
 export default {
   name: "Board",

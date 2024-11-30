@@ -4,6 +4,7 @@ import Board from "@/components/Board.vue";
 import FigureService from "@/services/FigureService.js";
 import Lose from "./components/Lose.vue";
 import Win from "./components/Win.vue";
+import { send } from "vite";
 
 export default {
   components: {
@@ -119,6 +120,9 @@ export default {
       this.countReshuffles++
       console.log(this.countReshuffles)
       this.checkGame()
+    },
+    SendName(){
+      console.log('123')
     }
   },
   mounted() {
@@ -138,12 +142,12 @@ export default {
           style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
             @restart="startNewGame" @reshuffle="reshuffle"/>
-      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"/>
+      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame" @sendname="SendName()"/>
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
     </main>
   </div>
 </template>
 
-<style scoded>
+<style scoped>
 
 </style>
