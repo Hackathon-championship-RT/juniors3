@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     checkGame() {
+      this.chosen = undefined
       if (this.tiles.length === 0) {
         this.gameStatus = "win"
       } else {
