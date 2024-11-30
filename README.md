@@ -14,6 +14,7 @@ create table results(
     difficulty text    not null
 ); */
 /* Запуск бэка:
+  cd backend
   npm i
   npm start*/ 
 
