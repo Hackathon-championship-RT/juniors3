@@ -64,6 +64,11 @@ export default {
 <style scoped>
 .img {
   position: absolute;
+  user-select: none;
+}
+
+.selectable, .chosen{
+  cursor: pointer;
 }
 
 .selectable:hover,
@@ -75,5 +80,6 @@ export default {
   position: absolute;
   opacity: 40%;
   filter: blur(5px);
+  user-select: none;
 }
 </style>
