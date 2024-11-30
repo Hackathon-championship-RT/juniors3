@@ -122,15 +122,19 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game'"
-      style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+      style="z-index: 2000000000;position: absolute;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
       class="bg-gray-900 ">
     </div>
     <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" />
     <main class="flex justify-center items-center"
-      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%; z-index: -1">
+      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%;">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" />
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" class="w-1/4" />
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>
 </template>
+
+<style scoded>
+
+</style>
