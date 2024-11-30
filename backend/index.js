@@ -8,14 +8,23 @@ app.get('/', async (req, res) => {
     res.header("Access-Control-Allow-Origin", req.headers['origin'])
     console.log(req.query)
     try {
+        let result
         if (req.query['difficulty'] !== undefined) {
-            res.status(200).json(await sql`SELECT *
-                                           FROM results
-                                           WHERE difficulty = ${req.query['difficulty']}`)
+            result = await sql`SELECT *
+                               FROM results
+                               WHERE difficulty = ${req.query['difficulty']}`
         } else {
-            res.status(200).json(await sql`SELECT *
-                                           FROM results`)
+            result = await sql`SELECT *
+                               FROM results`
         }
+        result.sort((a, b) => {
+            if (a.time === b.time) {
+                return a.reshuffles - b.reshuffles
+            }
+            return a.time - b.time
+        })
+        result = result.filter((e, ind) => ind < 10)
+        res.status(200).json(result)
     } catch (e) {
         console.log(e)
         res.sendStatus(400)
