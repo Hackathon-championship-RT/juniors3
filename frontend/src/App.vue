@@ -128,12 +128,13 @@ export default {
       this.isLeaderBoard = !this.isLeaderBoard
     },
     async SendName(info) {
+      console.log('axios')
       await axios.get('add_result', {
         params: {
-          name: info.name,
-          time: info.time,
+          name: info[name],
+          time: info[time],
           reshaffles: this.countReshuffles,
-          difficulty: info.difficulty
+          difficulty: info[difficulty]
         }
       })
     }
@@ -157,7 +158,7 @@ export default {
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
         @restart="startNewGame" @reshuffle="reshuffle" />
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"
-        @sendname="SendName(info)" />
+        @sendname="SendName()" />
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
       <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;" />
     </main>
