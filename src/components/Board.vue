@@ -40,9 +40,6 @@ export default {
     chooseTile(tile) {
       this.$emit('choose', tile)
     },
-    saveStart(){
-      localStorage.setItem('tiles',JSON.stringify(this.tiles))
-    }
   },
   mounted(){
 
