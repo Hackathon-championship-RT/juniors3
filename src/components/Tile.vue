@@ -67,7 +67,8 @@ export default {
   position: absolute;
 }
 
-.selectable:hover, .chosen {
+.selectable:hover,
+.chosen {
   filter: brightness(80%)
 }
 

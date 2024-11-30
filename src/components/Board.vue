@@ -1,16 +1,21 @@
 <script>
 import Tile from "@/components/Tile.vue";
+import { toHandlerKey } from "vue";
 
 export default {
   name: "Board",
-  components: {Tile},
+  components: { Tile },
   props: {
     tiles: {
       type: Array,
       required: true
     },
-    chosen: {
-      type: Object
+  },
+  data() {
+    return {
+      chosen: {
+
+      }
     }
   },
   methods: {
@@ -28,7 +33,23 @@ export default {
       return !up && !(left && right)
     },
     chooseTile(tile) {
-      console.log(tile)
+      if (!this.chosen.x) {
+        this.chosen = tile
+        console.log(this.chosen)
+        console.log('mistake')
+      } else {
+        if (this.chosen.type == tile.type) {
+          console.log('Удалим')
+          $emit('delete', [this.chosen, tile]);
+        } else {
+          this.chosen = {}
+          console.log('1323')
+        }
+      }
+    },
+    sendTiles(){
+      this.$emit();
+      
     }
   }
 }
@@ -37,10 +58,8 @@ export default {
 <template>
   <div>
     <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)" :chosen="tile === chosen" :key="tile"
-          @choose="chooseTile"/>
+      @choose="chooseTile(tile)" />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
