@@ -134,14 +134,17 @@ export default {
     },
     async SendName(info) {
       console.log('axios')
+      console.log(info)
+      console.log('next-get')
       await axios.get('add_result', {
         params: {
-          name: info[name],
-          time: info[time],
+          name: info.name,
+          time: info.time,
           reshaffles: this.countReshuffles,
           difficulty: info[difficulty]
         }
-      })
+      },
+        console.log('send'))
     }
   },
   mounted() {

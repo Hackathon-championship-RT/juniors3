@@ -6,12 +6,11 @@ export default {
       hour: 0,
       min: 0,
       sec: 0,
-      time: `${this.hour}:${this.min}:${this.sec}`
+      time: ""
     }
   },
   methods: {
     timer() {
-      console.log(1321)
       if (this.sec < 59) {
         this.sec += 1
       } else {
@@ -25,7 +24,9 @@ export default {
           }
         }
       }
-      localStorage.setItem('time', 5);
+      this.time = `${this.hour}:${this.min}:${this.sec}`
+      window.localStorage.setItem('time', this.time);
+      console.log(window.localStorage.getItem('time'));
     },
   },
   mounted() {

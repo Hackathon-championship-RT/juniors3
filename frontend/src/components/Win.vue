@@ -24,7 +24,7 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
     <button type="button"
-      @click="$emit('sendname', { name: this.name, time: this.time, difficulty: this.difficulty }), this.used = !this.used, console.log(this.time)"
+      @click="$emit('sendname', { name: name, time: time, difficulty: difficulty }), this.used = !this.used, console.log(this.time)"
       :disabled="used == true || name == ''"
       class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-2 mr-2">
       Отправить
@@ -52,8 +52,9 @@ export default {
   methods: {
     getInfo() {
       console.log('work')
+      console.log(this.name)
       this.time = localStorage.getItem('time')
-      console.log(this.time)
+      
     }
   },
   mounted() {
