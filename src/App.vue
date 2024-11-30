@@ -1,5 +1,4 @@
 <script>
-import StartApp from '../src/components/StartApp.vue'
 import Header from "@/components/Header.vue";
 import Board from "@/components/Board.vue";
 import FigureService from "@/services/FigureService.js";
@@ -8,7 +7,6 @@ export default {
   components: {
     Board,
     Header,
-    StartApp
   },
   data() {
     return {
@@ -19,10 +17,6 @@ export default {
     }
   },
   methods: {
-    Start() {
-      console.log('start');
-      this.start = true;
-    },
     checkGame() {
       let game = localStorage.getItem('game')
       if (game) {
@@ -67,11 +61,10 @@ export default {
 </script>
 
 <template>
-  <start-app v-if="!start" @start="Start"></start-app>
-  <div v-if="start">
-    <Header @revert="revert"/>
+  <div>
+    <Header @revert="revert" />
     <main class="" style="min-height: 100vh;">
-      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile"/>
+      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile" />
     </main>
   </div>
 </template>

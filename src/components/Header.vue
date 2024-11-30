@@ -1,6 +1,34 @@
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      hour: 0,
+      min: 0,
+      sec: 0,
+    }
+  },
+  methods: {
+    timer() {
+      console.log(1321)
+      if (this.sec < 60) {
+        this.sec += 1
+      } else {
+        this.sec = 0;
+        if (this.min < 60) {
+          this.min += 1
+        } else {
+          this.min = 0;
+          if (this.hour < 24) {
+            this.hour += 1
+          }
+        }
+      }
+    },
+  },
+  mounted() {
+    setInterval(this.timer, 1000);
+  }
 }
 </script>
 
@@ -11,7 +39,7 @@ export default {
     <p class="text-white mt-1 hover:cursor-pointer">Обновить поле</p>
     <p class="text-white mt-1 hover:cursor-pointer">Подсказка</p>
     <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('revert')">Отмена хода</p>
-    <p class="text-white mt-1 hover:cursor-pointer">Таймер</p>
+    <p class="text-white mt-1 hover:cursor-pointer">{{ hour }}:{{ min }}:{{ sec }}</p>
   </header>
 </template>
 
