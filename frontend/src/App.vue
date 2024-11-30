@@ -4,7 +4,6 @@ import Board from "@/components/Board.vue";
 import FigureService from "@/services/FigureService.js";
 import Lose from "./components/Lose.vue";
 import Win from "./components/Win.vue";
-import { send } from "vite";
 
 export default {
   components: {
