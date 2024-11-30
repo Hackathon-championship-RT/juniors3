@@ -12,6 +12,7 @@ export default {
   },
   data() {
     return {
+      tiles: FigureService.turtle,
       start: false,
       chosen: undefined
     }
@@ -35,25 +36,21 @@ export default {
       console.log(tile)
       if (this.chosen) {
         if (this.chosen === tile) {
-
+          this.chosen = undefined
+        } else if (this.chosen.type === tile.type) {
+          this.deleteTiles([this.chosen, tile])
+          this.chosen = undefined
+        } else {
+          this.chosen = tile
         }
+      } else {
+        this.chosen = tile
       }
     },
-    DeleteTiles(tiles) {
+    deleteTiles(tiles) {
       let tile1 = tiles[0];
       let tile2 = tiles[1];
-      for (let i = 0; i < this.tiles.length; i++) {
-        if (tile1 === this.tiles[i]) {
-          this.deletedtiles.push(tile1);
-          this.tiles.splice(i, 1)
-        }
-      }
-      for (let i = 0; i < this.tiles.length; i++) {
-        if (tile2 === this.tiles[i]) {
-          this.deletedtiles.push(tile2);
-          this.tiles.splice(i, 1)
-        }
-      }
+      this.tiles = this.tiles.filter((e) => e !== tile1 && e !== tile2)
     }
   },
   mounted() {
@@ -67,7 +64,7 @@ export default {
   <div v-if="start">
     <Header/>
     <main class="" style="min-height: 100vh;">
-      <Board :tiles="FigureService().turtle" @choose="chooseTile"/>
+      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile"/>
     </main>
   </div>
 </template>
