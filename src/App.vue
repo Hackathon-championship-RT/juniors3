@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      tiles: FigureService.turtle,
+      tiles: FigureService.getTurtle(),
       moves: [],
       start: false,
       chosen: undefined,
@@ -20,7 +20,28 @@ export default {
   },
   methods: {
     checkGame() {
-
+      if (this.tiles.length === 0) {
+        this.gameStatus = "win"
+      } else {
+        const dict = {}
+        for (const tile of this.tiles) {
+          if (this.isSelectable(tile)) {
+            if (dict[tile.type] === undefined) {
+              dict[tile.type] = [tile]
+            } else {
+              dict[tile.type].push(tile)
+            }
+          }
+        }
+        for (let i = 0; i < 52; i++) {
+          if (dict[i] && dict[i].length >= 2) {
+            this.hint = [dict[i][0], dict[i][1]]
+            this.gameStatus = "game"
+            return
+          }
+        }
+        this.gameStatus = "lose"
+      }
     },
     chooseTile(tile) {
       console.log(tile)
@@ -51,6 +72,19 @@ export default {
         this.tiles.push(this.moves[this.moves.length - 1])
         this.moves.pop()
       }
+    },
+    isSelectable(tile) {
+      let left = false, right = false, up = false;
+      this.tiles.map((e) => {
+        if (e.z === tile.z && e.x === tile.x + 1 && Math.abs(e.y - tile.y) < 1) {
+          right = true
+        } else if (e.z === tile.z && e.x === tile.x - 1 && Math.abs(e.y - tile.y) < 1) {
+          left = true
+        } else if (e.z === tile.z + 1 && Math.abs(e.x - tile.x) < 1 && Math.abs(e.y - tile.y) < 1) {
+          up = true
+        }
+      })
+      return !up && !(left && right)
     }
   },
   mounted() {
@@ -61,9 +95,9 @@ export default {
 
 <template>
   <div>
-    <Header @revert="revert" />
+    <Header @revert="revert"/>
     <main class="" style="min-height: 100vh;">
-      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile" />
+      <Board :tiles="tiles" :chosen="chosen" @choose="chooseTile"/>
     </main>
   </div>
 </template>

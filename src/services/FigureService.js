@@ -144,6 +144,12 @@ class FigureService {
         {x: 7, y: 4, z: 3},
         {x: 6.5, y: 3.5, z: 4}
     ]
+
+    getTurtle() {
+        return this.turtle.map((e) => {
+            return {...e, type: 0}
+        })
+    }
 }
 
 export default new FigureService()

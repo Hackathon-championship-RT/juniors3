@@ -31,20 +31,6 @@ export default {
     },
     chooseTile(tile) {
       this.$emit('choose', tile)
-      // console.log(123)
-      // if (this.chosen.x == "") {
-      //   this.chosen = tile
-      //   console.log(this.chosen)
-      //   console.log('mistake')
-      // } else {
-      //   if (this.chosen.type == tile.type) {
-      //     console.log('Удалим')
-      //     this.usetiles.deleted([this.chosen, tile])
-      //   } else {
-      //     this.chosen = {}
-      //     console.log('1323')
-      //   }
-      // }
     }
   }
 }
