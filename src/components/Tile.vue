@@ -17,29 +17,49 @@ export default {
     getSrc(type) {
       return "/src/assets/bmw.png"
     },
-    getZIndex(tile) {
-      return Math.floor(tile['z'] * 100000 - tile['x'] * 100 + tile['y'] * 100 + 100000)
+    getX() {
+      return this.tile['x'] * 89 + this.tile['z'] * 20
+    },
+    getY() {
+      return this.tile['y'] * 109 + 60 - this.tile['z'] * 20
+    },
+    getZIndex() {
+      return Math.floor(this.tile['z'] * 100000 - this.tile['x'] * 100 + this.tile['y'] * 100 + 100000)
+    },
+    getShadowX() {
+      return this.tile['x'] * 89 + this.tile['z'] * 20
+    },
+    getShadowY() {
+      return this.tile['y'] * 109 + 40 - this.tile['z'] * 20
+    },
+    getShadowZIndex() {
+      return Math.floor((this.tile['z'] - 1) * 100000 - this.tile['x'] * 100 + this.tile['y'] * 100 + 100000)
     }
   }
 }
 </script>
 
 <template>
-  <img v-if="selectable && chosen" class="img chosen" :style="{
-    'left': (tile.x * 89 + tile.z * 20) + 'px',
-    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
-    'z-index': getZIndex(tile)
-  }" :src="getSrc(tile.type)" @click="$emit('choose', tile)" alt="no" />
-  <img v-else-if="selectable" class="img selectable" :style="{
-    'left': (tile.x * 89 + tile.z * 20) + 'px',
-    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
-    'z-index': getZIndex(tile)
-  }" :src="getSrc(tile.type)" @click="$emit('choose', tile)" alt="no" />
-  <img v-else class="img" :style="{
-    'left': (tile.x * 89 + tile.z * 20) + 'px',
-    'top': (tile.y * 109 + 100 - tile.z * 20) + 'px',
-    'z-index': getZIndex(tile)
-  }" :src="getSrc(tile.type)" alt="no" />
+  <div>
+    <img v-if="selectable && chosen" class="img chosen"
+         :style="{'left':getX()+'px',
+       'top': getY()+'px',
+       'z-index': getZIndex()}"
+         :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
+    <img v-else-if="selectable" class="img selectable"
+         :style="{'left':getX()+'px',
+       'top': getY()+'px',
+       'z-index': getZIndex()}"
+         :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
+    <img v-else class="img"
+         :style="{'left':getX()+'px',
+       'top': getY()+'px',
+       'z-index': getZIndex()}"
+         :src="getSrc(tile['type'])" alt="no"/>
+    <img class="shadow" src="/src/assets/shadow.png"
+         :style="{'left' : getShadowX()+'px', 'top':getShadowY() +'px', 'z-index':getShadowZIndex()}"
+         alt="no"/>
+  </div>
 </template>
 
 <style scoped>
@@ -50,5 +70,11 @@ export default {
 .selectable:hover,
 .chosen {
   filter: brightness(80%)
+}
+
+.shadow {
+  position: absolute;
+  opacity: 40%;
+  filter: blur(5px);
 }
 </style>

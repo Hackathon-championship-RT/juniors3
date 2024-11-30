@@ -2,6 +2,7 @@
 import StartApp from '../src/components/StartApp.vue'
 import Header from "@/components/Header.vue";
 import Board from "@/components/Board.vue";
+import FigureService from "@/services/FigureService.js";
 
 export default {
   components: {
