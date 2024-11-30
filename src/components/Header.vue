@@ -11,7 +11,7 @@ export default {
   methods: {
     timer() {
       console.log(1321)
-      if (this.sec < 60) {
+      if (this.sec < 59) {
         this.sec += 1
       } else {
         this.sec = 0;
@@ -39,7 +39,7 @@ export default {
     <p class="text-white mt-1 hover:cursor-pointer">Обновить поле</p>
     <p class="text-white mt-1 hover:cursor-pointer">Подсказка</p>
     <p class="text-white mt-1 hover:cursor-pointer" @click="$emit('revert')">Отмена хода</p>
-    <p class="text-white mt-1 hover:cursor-pointer">{{ hour }}:{{ min }}:{{ sec }}</p>
+    <p class="text-white mt-1 hover:cursor-pointer">Время: <span v-if="hour">{{ hour }}:</span>{{ min }}:{{ sec }}</p>
   </header>
 </template>
 

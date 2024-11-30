@@ -41,24 +41,23 @@ export default {
 
 <template>
   <div>
-    <img draggable="false" v-if="selectable && chosen" class="img chosen"
-         :style="{'left':getX()+'px',
-       'top': getY()+'px',
-       'z-index': getZIndex()}"
-         :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
-    <img draggable="false"  v-else-if="selectable" class="img selectable"
-         :style="{'left':getX()+'px',
-       'top': getY()+'px',
-       'z-index': getZIndex()}"
-         :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no"/>
-    <img draggable="false"  v-else class="img"
-         :style="{'left':getX()+'px',
-       'top': getY()+'px',
-       'z-index': getZIndex()}"
-         :src="getSrc(tile['type'])" alt="no"/>
-    <img draggable="false"  class="shadow" src="/src/assets/shadow.png"
-         :style="{'left' : getShadowX()+'px', 'top':getShadowY() +'px', 'z-index':getShadowZIndex()}"
-         alt="no"/>
+    <img draggable="false" v-if="selectable && chosen" class="img chosen" :style="{
+      'left': getX() + 'px',
+      'top': getY() + 'px',
+      'z-index': getZIndex()
+    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no" />
+    <img draggable="false" onmousedown="off" v-else-if="selectable" class="img selectable" :style="{
+      'left': getX() + 'px',
+      'top': getY() + 'px',
+      'z-index': getZIndex()
+    }" :src="getSrc(tile['type'])" @click="$emit('choose', tile)" alt="no" />
+    <img draggable="false" v-else class="img" :style="{
+      'left': getX() + 'px',
+      'top': getY() + 'px',
+      'z-index': getZIndex()
+    }" :src="getSrc(tile['type'])" alt="no" />
+    <img draggable="false" class="shadow" src="/src/assets/shadow.png"
+      :style="{ 'left': getShadowX() + 'px', 'top': getShadowY() + 'px', 'z-index': getShadowZIndex() }" alt="no" />
   </div>
 </template>
 
