@@ -14,12 +14,10 @@ export default {
   },
   data() {
     return {
-      tiles: [{ x: 0, y: 0, z: 0, type: 0 }, { x: 1, y: 0, z: 0, type: 0 }, { x: 0, y: 1, z: 0, type: 0 }, {
-        x: 1,
-        y: 1,
-        z: 0,
-        type: 0
-      }],
+      tiles: [{x: 0, y: 0, z: 0, type: 0},
+        {x: 1, y: 0, z: 0, type: 0},
+        {x: 0, y: 1, z: 0, type: 0},
+        {x: 0, y: 0, z: 1, type: 0}],
       deleted: [],
       moves: [],
       start: false,
@@ -105,12 +103,19 @@ export default {
     },
     startNewGame() {
       this.tiles = FigureService.getTurtle()
+      this.deleted = []
+      this.checkGame()
     },
     revertGame() {
       for (const tile of this.deleted) {
         this.tiles.push(tile)
       }
-      this.deleted.clear()
+      this.deleted = []
+      this.checkGame()
+    },
+    reshuffle(){
+      console.log("reshuffle")
+      this.checkGame()
     }
   },
   mounted() {
@@ -122,11 +127,18 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game'"
+         style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+         class="bg-gray-900 ">
       style="z-index: 2000000000;position: absolute;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
       class="bg-gray-900 ">
     </div>
-    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" />
+    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" @reshuffle="reshuffle"/>
     <main class="flex justify-center items-center"
+          style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
+      <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
+            @restart="startNewGame" @reshuffle="reshuffle"/>
+      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"/>
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
       style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%;">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" />
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" class="w-1/4" />

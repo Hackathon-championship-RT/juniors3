@@ -21,7 +21,7 @@ export default {
       return this.tile['x'] * 89 + this.tile['z'] * 20
     },
     getY() {
-      return this.tile['y'] * 109 + 100 - this.tile['z'] * 20
+      return this.tile['y'] * 109 + 80 - this.tile['z'] * 20
     },
     getZIndex() {
       return Math.floor(this.tile['z'] * 100000 - this.tile['x'] * 100 + this.tile['y'] * 100 + 100000)
@@ -30,7 +30,7 @@ export default {
       return this.tile['x'] * 89 + this.tile['z'] * 20
     },
     getShadowY() {
-      return this.tile['y'] * 109 + 80 - this.tile['z'] * 20
+      return this.tile['y'] * 109 + 60 - this.tile['z'] * 20
     },
     getShadowZIndex() {
       return Math.floor((this.tile['z'] - 1) * 100000 - this.tile['x'] * 100 + this.tile['y'] * 100 + 100000)
