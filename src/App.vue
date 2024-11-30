@@ -24,7 +24,8 @@ export default {
       chosen: undefined,
       gameStatus: "game",
       hint: [],
-      isShowHint: false
+      isShowHint: false,
+      countReshuffles: 0
     }
   },
   methods: {
@@ -114,8 +115,9 @@ export default {
       this.deleted = []
       this.checkGame()
     },
-    reshuffle(){
-      console.log("reshuffle")
+    reshuffle() {
+      this.countReshuffles++
+      console.log(this.countReshuffles)
       this.checkGame()
     }
   },
