@@ -138,7 +138,7 @@ export default {
         params: {
           name: localStorage.getItem('nickname'),
           time: localStorage.getItem('time'),
-          reshaffles: this.countReshuffles,
+          reshuffles: this.countReshuffles,
           difficulty: "hard"
         }
       },
