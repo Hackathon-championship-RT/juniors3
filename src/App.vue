@@ -139,10 +139,6 @@ export default {
             @restart="startNewGame" @reshuffle="reshuffle"/>
       <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"/>
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
-      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%;">
-      <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" />
-      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" class="w-1/4" />
-      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>
 </template>
