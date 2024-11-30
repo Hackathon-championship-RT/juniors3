@@ -23,7 +23,7 @@
       <input v-model="name" type="text" id="default-input"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
-    <button type="button" @click="$emit('sendname', this.name), this.used = !this.used"
+    <button type="button" @click="$emit('sendname', this.info), this.used = !this.used, console.log(this.time)"
       :disabled="used == true || name == ''"
       class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-2 mr-2">
       Отправить
@@ -32,14 +32,32 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
       name: '',
-      time: '',
-      
-      used: false
+      time: '6:3:17',
+      difficulty: "hard",
+      used: false,
+      info: {
+        name: this.name,
+        time: this.time,
+        difficulty: this.difficulty
+      }
     }
   },
+  methods: {
+    getInfo() {
+      console.log('work')
+      console.log(localStorage.getItem('time').data)
+      this.time = localStorage.getItem('time')
+      console.log(this.time)
+    }
+  },
+  mounted() {
+    this.getInfo()
+  }
 }
 </script>
