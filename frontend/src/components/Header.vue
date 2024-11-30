@@ -26,7 +26,6 @@ export default {
       }
       this.time = `${this.hour}:${this.min}:${this.sec}`
       window.localStorage.setItem('time', this.time);
-      console.log(window.localStorage.getItem('time'));
     },
   },
   mounted() {

@@ -20,12 +20,10 @@
     <div class="mb-6 ml-2 mr-2">
       <label for="default-input" class="block mb-2 text-sm font-medium text-white"><span class="text-black">Хотите
           попасть в ТОП?</span> ВВЕДИТЕ ИМЯ</label>
-      <input v-model="name" type="text" id="default-input"
+      <input v-model="nickname" type="text" id="default-input"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
-    <button type="button"
-      @click="$emit('sendname', { name: name, time: time, difficulty: difficulty }), this.used = !this.used, console.log(this.time)"
-      :disabled="used == true || name == ''"
+    <button type="button" @click="send()" :disabled="used == true || nickname == ''"
       class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-2 mr-2">
       Отправить
     </button>
@@ -38,23 +36,24 @@
 export default {
   data() {
     return {
-      name: '123',
+      nickname: '123',
       time: '6:3:17',
-      difficulty: "hard",
       used: false,
-      info: {
-        name: this.name,
-        time: this.time,
-        difficulty: this.difficulty
-      }
     }
   },
   methods: {
     getInfo() {
       console.log('work')
-      console.log(this.name)
       this.time = localStorage.getItem('time')
-      
+      console.log(this.time)
+    },
+    send() {
+      if (this.nickname) {
+        window.localStorage.setItem('nickname', this.nickname)
+        $emit('send')
+        this.used = !this.used
+      }
+
     }
   },
   mounted() {
