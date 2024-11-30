@@ -16,7 +16,7 @@ export default {
       moves: [],
       start: false,
       chosen: undefined,
-      gameStatus: "game",
+      gameStatus: "lose",
       hint: [],
       isShowHint: false
     }
@@ -104,8 +104,9 @@ export default {
 
 <template>
   <div>
-    <Header @revert="revert" @showhint="showHint"/>
-    <main class="" style="min-height: 100vh;">
+    <Header @revert="revert" @showhint="showHint" />
+    <main class="flex justify-center items-center" style="min-height: 100vh;">
+      <Lose class="h-1/2 align-center" />
       <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-center">
-        <div style="z-index: 1000000;"
+    <div class="flex justify-center items-center">
+        <div style="z-index: 100000000;"
             class="flex flex-col content-between bg-gradient-to-r from-red-500 via-red-900 to-red-500 border-4 rounded-md border-red-900">
             <div class="text-center mb-5 mt-5">
                 <p class="text-white text-lg font-serif">Упс, вы проиграли!</p>
