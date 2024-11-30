@@ -14,10 +14,10 @@ export default {
   },
   data() {
     return {
-      tiles: [{x: 0, y: 0, z: 0, type: 0},
-        {x: 1, y: 0, z: 0, type: 1},
-        {x: 0, y: 1, z: 0, type: 0},
-        {x: 0, y: 0, z: 1, type: 1}],
+      tiles: [{ x: 0, y: 0, z: 0, type: 0 },
+      { x: 1, y: 0, z: 0, type: 1 },
+      { x: 0, y: 1, z: 0, type: 0 },
+      { x: 0, y: 0, z: 1, type: 1 }],
       deleted: [],
       moves: [],
       start: false,
@@ -120,8 +120,8 @@ export default {
       console.log(this.countReshuffles)
       this.checkGame()
     },
-    SendName(){
-      console.log('123')
+    async SendName() {
+      await axios.post('',)
     }
   },
   mounted() {
@@ -133,20 +133,19 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game'"
-         style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
-         class="bg-gray-900 ">
+      style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+      class="bg-gray-900 ">
     </div>
-    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" @reshuffle="reshuffle"/>
+    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame" @reshuffle="reshuffle" />
     <main class="flex justify-center items-center"
-          style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
+      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
-            @restart="startNewGame" @reshuffle="reshuffle"/>
-      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame" @sendname="SendName()"/>
-      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
+        @restart="startNewGame" @reshuffle="reshuffle" />
+      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"
+        @sendname="SendName()" />
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
     </main>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
