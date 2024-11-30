@@ -11,21 +11,16 @@ export default {
   },
   methods: {
     timer() {
-      if (this.sec < 59) {
-        this.sec += 1
+      if (window.localStorage.getItem('time') == "0") {
+        this.time = 0;
+        window.localStorage.setItem('time', 0)
       } else {
-        this.sec = 0;
-        if (this.min < 60) {
-          this.min += 1
-        } else {
-          this.min = 0;
-          if (this.hour < 24) {
-            this.hour += 1
-          }
-        }
-      };
-      this.time += 1
-      window.localStorage.setItem('time', this.time);
+        this.time += 1
+        this.sec = this.time % 60
+        this.min = Math.floor(this.time / 60)
+        this.hour = Math.floor(this.time / 3600)
+        window.localStorage.setItem('time', this.time)
+      }
     },
   },
   mounted() {

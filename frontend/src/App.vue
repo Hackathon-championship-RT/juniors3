@@ -122,6 +122,7 @@ export default {
       this.deleted = []
       this.checkGame()
       this.isShowHint = false
+      window.localStorage.setItem('time', '0')
     },
     reshuffle() {
       const types = this.tiles.map((e) => e.type)
@@ -146,7 +147,7 @@ export default {
           difficulty: "hard"
         }
       })
-    }
+    },
   },
   mounted() {
     this.checkGame();
