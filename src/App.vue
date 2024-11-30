@@ -13,15 +13,14 @@ export default {
       tiles: FigureService.turtle,
       moves: [],
       start: false,
-      chosen: undefined
+      chosen: undefined,
+      gameStatus: "game",
+      hint: []
     }
   },
   methods: {
     checkGame() {
-      let game = localStorage.getItem('game')
-      if (game) {
-        this.start = true
-      }
+
     },
     chooseTile(tile) {
       console.log(tile)
