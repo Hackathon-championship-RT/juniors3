@@ -7,9 +7,11 @@ import Win from "./components/Win.vue";
 import LeaderBoard from "./components/LeaderBoard.vue";
 import axios from "axios";
 import Rnd from "@/services/Rnd.js";
+import StartGame from "@/components/StartGame.vue";
 
 export default {
   components: {
+    StartGame,
     Board,
     Header,
     Lose,
@@ -18,10 +20,10 @@ export default {
   },
   data() {
     return {
-      tiles: [{ x: 0, y: 0, z: 0, type: 0 },
-      { x: 1, y: 0, z: 0, type: 1 },
-      { x: 0, y: 1, z: 0, type: 0 },
-      { x: 0, y: 0, z: 1, type: 1 }],
+      tiles: [{x: 0, y: 0, z: 0, type: 0},
+        {x: 1, y: 0, z: 0, type: 1},
+        {x: 0, y: 1, z: 0, type: 0},
+        {x: 0, y: 0, z: 1, type: 1}],
       deleted: [],
       moves: [],
       start: false,
@@ -30,7 +32,8 @@ export default {
       hint: [],
       isShowHint: false,
       countReshuffles: 0,
-      isLeaderBoard: false
+      isLeaderBoard: false,
+      startGame: false
     }
   },
   methods: {
@@ -109,8 +112,8 @@ export default {
     showHint() {
       this.isShowHint = true
     },
-    startNewGame() {
-      this.tiles = FigureService.getTurtle("easy")
+    startNewGame(difficulty) {
+      this.tiles = FigureService.getTurtle(difficulty)
       this.deleted = []
       this.checkGame()
       this.isShowHint = false
@@ -127,7 +130,7 @@ export default {
       const types = this.tiles.map((e) => e.type)
       Rnd.shuffle(types)
       this.tiles = this.tiles.map((e, index) => {
-        return { ...e, type: types[index] }
+        return {...e, type: types[index]}
       })
       this.countReshuffles++
       this.checkGame()
@@ -146,6 +149,10 @@ export default {
           difficulty: "hard"
         }
       })
+    },
+    restart() {
+      this.gameStatus = "startGame"
+      this.startGame = true
     }
   },
   mounted() {
@@ -157,19 +164,20 @@ export default {
 <template>
   <div>
     <div v-if="this.gameStatus !== 'game' || isLeaderBoard"
-      style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
-      class="bg-gray-900 ">
+         style="z-index: 2000000000;position: fixed;left: 0;top: 0;width: 100%;opacity: 50%;min-height: 100vh;"
+         class="bg-gray-900 ">
     </div>
-    <Header @revert="revert" @showhint="showHint" @restart="startNewGame" @update="revertGame"
-      @leaderBoard="LeaderBoard()" @reshuffle="reshuffle" />
+    <Header @revert="revert" @showhint="showHint" @restart="restart" @update="revertGame"
+            @leaderBoard="LeaderBoard" @reshuffle="reshuffle"/>
     <main class="flex justify-center items-center"
-      style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
+          style="min-height: 100vh;position: absolute;left: 0;top: 0;width: 100%">
       <Lose v-if="gameStatus === 'lose'" style="z-index: 2000000001;" @revert="revert" @update="revertGame"
-        @restart="startNewGame" @reshuffle="reshuffle" />
-      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="startNewGame"
-        @send="SendName" />
-      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile" />
-      <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;" />
+            @restart="restart" @reshuffle="reshuffle"/>
+      <Win v-if="gameStatus === 'win'" style="z-index: 2000000001;" @update="revertGame" @restart="restart"
+           @send="SendName"/>
+      <StartGame v-if="gameStatus === 'startGame'" style="z-index: 2000000001;" @start="startNewGame"/>
+      <Board :tiles="tiles" :chosen="chosen" :hint="hint" :show-hint="isShowHint" @choose="chooseTile"/>
+      <LeaderBoard v-if="isLeaderBoard" style="z-index: 2000000001;"/>
     </main>
   </div>
 </template>
