@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col items-center">
         <div>
-            <button type="button" @click="$emit('leaderBoard')" style="width:200px;"
+            <button type="button" @click="$emit('escape')" style="width:200px;"
                 class="mt-10 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-5">
                 Назад
             </button>
@@ -76,26 +76,40 @@ export default {
     name: "LeaderBoard",
     data() {
         return {
-            hard: [{ name: 'poco', time: 34, reshuffles: 3 }, { name: 'poco', time: 34, reshuffles: 3 }],
-            medium: [{ name: 'poco', time: 34, reshuffles: 3 }],
-            easy: [{ name: 'poco', time: 34, reshuffles: 3 }]
+            hard: [],
+            medium: [],
+            easy: []
         };
     },
     methods: {
         async getHard() {
-            let response = await axios.get('/hard')
+            let response = await axios.get('', {
+                params: {
+                    difficulty: 'hard'
+                }
+            })
             this.hard = response.data
         },
         async getMiddle() {
-            let response = await axios.get('/middle')
+            let response = await axios.get('', {
+                params: {
+                    difficulty: 'medium'
+                }
+            })
             this.middle = response.data
         }, async getEasy() {
-            let response = await axios.get('/easy')
+            let response = await axios.get('', {
+                params: {
+                    difficulty: 'easy'
+                }
+            })
             this.easy = response.data
         }
     },
     mounted() {
-
+        this.getHard();
+        this.getMiddle();
+        this.getEasy();
     }
 };
 </script>
