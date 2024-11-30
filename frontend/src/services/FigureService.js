@@ -147,13 +147,13 @@ class FigureService {
         {x: 6.5, y: 3.5, z: 4}
     ]
 
-    getTurtleHard() {
+    getTurtle(difficulty) {
         const types = [];
-        for (let i = 0; i < 36; i++) {
-            types.push(i)
-            types.push(i)
-            types.push(i)
-            types.push(i)
+        const count = difficulty === 'hard' ? 4 : difficulty === 'medium' ? 6 : 8
+        for (let i = 0; i < 144 / count; i++) {
+            for (let j = 0; j < count; j++) {
+                types.push(i)
+            }
         }
         Rnd.shuffle(types)
         return this.turtle.map((e, index) => {
