@@ -11,12 +11,16 @@ export default {
   },
   methods: {
     timer() {
-      if (window.localStorage.getItem('time') == "0") {
+      if (window.localStorage.getItem('time') == "null") {
         this.time = 0;
-        window.localStorage.setItem('time', 0)
+        window.localStorage.setItem('time', this.time)
       } else {
         this.time += 1
-        this.sec = this.time % 60
+        if (this.time == 0) {
+          this.sec = 0
+        } else {
+          this.sec = this.time % 60
+        }
         this.min = Math.floor(this.time / 60)
         this.hour = Math.floor(this.time / 3600)
         window.localStorage.setItem('time', this.time)

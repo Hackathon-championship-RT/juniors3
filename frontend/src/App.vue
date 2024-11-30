@@ -114,6 +114,7 @@ export default {
       this.deleted = []
       this.checkGame()
       this.isShowHint = false
+      window.localStorage.setItem('time', "null")
     },
     revertGame() {
       for (const tile of this.deleted) {
@@ -122,7 +123,7 @@ export default {
       this.deleted = []
       this.checkGame()
       this.isShowHint = false
-      window.localStorage.setItem('time', '0')
+      window.localStorage.setItem('time', 'null')
     },
     reshuffle() {
       const types = this.tiles.map((e) => e.type)
