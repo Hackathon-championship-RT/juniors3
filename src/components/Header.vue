@@ -10,6 +10,7 @@ export default {
     <p class="text-white mt-1 hover:cursor-pointer">Начать сначала</p>
     <p class="text-white mt-1 hover:cursor-pointer">Обновить поле</p>
     <p class="text-white mt-1 hover:cursor-pointer">Подсказка</p>
+    <p class="text-white mt-1 hover:cursor-pointer">Отмена хода</p>
     <p class="text-white mt-1 hover:cursor-pointer">Таймер</p>
   </header>
 </template>
