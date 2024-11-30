@@ -1,26 +1,18 @@
 <script>
 import Tile from "@/components/Tile.vue";
-import { UseFieldStore } from "@/stores/TilesStore";
+import {UseFieldStore} from "@/stores/TilesStore";
 
 export default {
   name: "Board",
 
-  components: { Tile },
+  components: {Tile},
   props: {
     tiles: {
       type: Array,
       required: true
     },
-  },
-  data() {
-    return {
-      usetiles: UseFieldStore,
-      chosen: {
-        x: "",
-        y: '',
-        z: '',
-        type: ''
-      }
+    chosen: {
+      type: Object
     }
   },
   methods: {
@@ -38,24 +30,21 @@ export default {
       return !up && !(left && right)
     },
     chooseTile(tile) {
-      console.log(123)
-      if (this.chosen.x == "") {
-        this.chosen = tile
-        console.log(this.chosen)
-        console.log('mistake')
-      } else {
-        if (this.chosen.type == tile.type) {
-          console.log('Удалим')
-          this.usetiles.deleted([this.chosen, tile])
-        } else {
-          this.chosen = {}
-          console.log('1323')
-        }
-      }
-    },
-    sendTiles() {
-      this.$emit();
-
+      this.$emit('choose', tile)
+      // console.log(123)
+      // if (this.chosen.x == "") {
+      //   this.chosen = tile
+      //   console.log(this.chosen)
+      //   console.log('mistake')
+      // } else {
+      //   if (this.chosen.type == tile.type) {
+      //     console.log('Удалим')
+      //     this.usetiles.deleted([this.chosen, tile])
+      //   } else {
+      //     this.chosen = {}
+      //     console.log('1323')
+      //   }
+      // }
     }
   }
 }
@@ -64,7 +53,7 @@ export default {
 <template>
   <div>
     <Tile v-for="tile in tiles" :tile="tile" :selectable="isSelectable(tile)" :chosen="tile === chosen" :key="tile"
-      @choose="chooseTile(tile)" />
+          @choose="chooseTile(tile)"/>
   </div>
 </template>
 

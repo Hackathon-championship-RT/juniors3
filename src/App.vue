@@ -13,9 +13,13 @@ export default {
   data() {
     return {
       start: false,
+      chosen: undefined
     }
   },
   methods: {
+    FigureService() {
+      return FigureService
+    },
     Start() {
       console.log('start');
       this.start = true;
@@ -27,21 +31,29 @@ export default {
         this.start = true
       }
     },
+    chooseTile(tile) {
+      console.log(tile)
+      if (this.chosen) {
+        if (this.chosen === tile) {
+
+        }
+      }
+    },
     DeleteTiles(tiles) {
       let tile1 = tiles[0];
       let tile2 = tiles[1];
       for (let i = 0; i < this.tiles.length; i++) {
         if (tile1 === this.tiles[i]) {
           this.deletedtiles.push(tile1);
-          this.tiles.splice(i, 1) 
+          this.tiles.splice(i, 1)
         }
-      };
+      }
       for (let i = 0; i < this.tiles.length; i++) {
         if (tile2 === this.tiles[i]) {
           this.deletedtiles.push(tile2);
           this.tiles.splice(i, 1)
         }
-      };
+      }
     }
   },
   mounted() {
@@ -53,9 +65,9 @@ export default {
 <template>
   <start-app v-if="!start" @start="Start"></start-app>
   <div v-if="start">
-    <Header />
+    <Header/>
     <main class="" style="min-height: 100vh;">
-      <Board :tiles=tiles @delete="DeleteTiles(tiles)" />
+      <Board :tiles="FigureService().turtle" @choose="chooseTile"/>
     </main>
   </div>
 </template>
