@@ -141,3 +141,7 @@ export default {
     </main>
   </div>
 </template>
+
+<style scoded>
+
+</style>
