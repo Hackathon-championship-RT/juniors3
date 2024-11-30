@@ -36,7 +36,7 @@
 export default {
   data() {
     return {
-      nickname: '123',
+      nickname: '',
       time: '6:3:17',
       used: false,
     }
