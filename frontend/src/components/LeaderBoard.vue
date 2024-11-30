@@ -9,51 +9,57 @@
         <div class="flex justify-between">
             <div class="min-h-screen flex items-center flex-col">
 
-                <div class="flex flex-col justify-center items-center bg-red-400 mr-5 ml-2 border-red-500 border-4">
+                <div
+                    class="flex flex-col justify-center rounded-xl items-center bg-red-400 mr-5 ml-2 border-red-500 border-4">
                     <p class="text-white text-xl font-serif mb-5">LeaderBoard: Hard level</p>
                     <div class="flex flex-row gap-5 mr-2 ml-2">
                         <p class="text-white text-md w-40">Имя</p>
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in hard" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in hard" class="flex flex-row justify-between pl-2 pr-2 mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
-                        <p class="text-white text-md w-32">{{ player.time }}</p>
+                        <p class="text-white text-md w-40">{{ Math.floor(player.time / 3600) }}:{{
+                            Math.floor(player.time / 60) }}:{{ player.time % 60 }}</p>
                         <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
                 </div>
             </div>
             <div class="min-h-screen flex items-center flex-col">
-                <div class="flex flex-col justify-center items-center bg-red-400 mr-5 ml-2 border-red-500 border-4">
+                <div
+                    class="flex flex-col justify-center items-center bg-blue-400 mr-5 ml-2 rounded-xl border-blue-500 border-4">
                     <p class="text-white text-xl font-serif mb-5">LeaderBoard: Medium level</p>
                     <div class="flex flex-row gap-5 mr-2 ml-2">
                         <p class="text-white text-md w-40">Имя</p>
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in medium" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in medium" class="flex flex-row justify-between pl-2 pr-2 mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
-                        <p class="text-white text-md w-32">{{ player.time }}</p>
+                        <p class="text-white text-md w-40">{{ Math.floor(player.time / 3600) }}:{{
+                            Math.floor(player.time / 60) }}:{{ player.time % 60 }}</p>
                         <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
                 </div>
             </div>
             <div class="min-h-screen flex items-center flex-col">
-                <div class="flex flex-col justify-center items-center bg-red-400 mr-5 ml-2 border-red-500 border-4">
+                <div
+                    class="flex flex-col justify-center rounded-xl items-center bg-green-400 mr-5 ml-2 border-green-500 border-4">
                     <p class="text-white text-xl font-serif mb-5">LeaderBoard: Easy level</p>
                     <div class="flex flex-row gap-5 mr-2 ml-2">
                         <p class="text-white text-md w-40">Имя</p>
                         <p class="text-white text-md w-26">Время</p>
                         <p class="text-white text-md w-26">Перемешивания</p>
                     </div>
-                    <div v-for="player in easy" class="flex flex-row justify-between  mr-2 ml-2 mb-2 "
+                    <div v-for="player in easy" class="flex flex-row justify-between pl-2 pr-2 mr-2 ml-2 mb-2 "
                         style="border-top: 1px black solid;width: 100%;">
                         <p class="text-white text-md w-40">{{ player.name }}</p>
-                        <p class="text-white text-md w-32">{{ player.time }}</p>
+                        <p class="text-white text-md w-40">{{ Math.floor(player.time / 3600) }}:{{
+                            Math.floor(player.time / 60) }}:{{ player.time % 60 }}</p>
                         <p class="text-white text-md w-26">{{ player.reshuffles }}</p>
                     </div>
 
@@ -70,17 +76,9 @@ export default {
     name: "LeaderBoard",
     data() {
         return {
-            players: [
-                { name: "Player 1", score: "100", time: 1 },
-                { name: "Player 2", score: "200", time: 2 },
-                { name: "Player 3", score: "150", time: 3 },
-                { name: "Player 4", score: "120", time: 4 },
-                { name: "Player 5", score: "180", time: 5 },
-                { name: "Player 6", score: "140", time: 6 },
-            ],
-            hard: [],
-            medium: [],
-            easy: []
+            hard: [{ name: 'poco', time: 34, reshuffles: 3 }, { name: 'poco', time: 34, reshuffles: 3 }],
+            medium: [{ name: 'poco', time: 34, reshuffles: 3 }],
+            easy: [{ name: 'poco', time: 34, reshuffles: 3 }]
         };
     },
     methods: {
@@ -95,6 +93,9 @@ export default {
             let response = await axios.get('/easy')
             this.easy = response.data
         }
+    },
+    mounted() {
+
     }
 };
 </script>
