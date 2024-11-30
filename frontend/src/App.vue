@@ -120,8 +120,8 @@ export default {
       console.log(this.countReshuffles)
       this.checkGame()
     },
-    SendName() {
-      console.log('123')
+    async SendName() {
+      await axios.post('',)
     }
   },
   mounted() {
