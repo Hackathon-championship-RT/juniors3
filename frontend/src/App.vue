@@ -133,15 +133,13 @@ export default {
       this.isLeaderBoard = !this.isLeaderBoard
     },
     async SendName() {
-      console.log('axios')
-      console.log(window.localStorage.getItem('nickname'))
       console.log('next-get')
       await axios.get('add_result', {
         params: {
-          name: info.name,
-          time: info.time,
+          name: localStorage.getItem('nickname'),
+          time: localStorage.getItem('time'),
           reshaffles: this.countReshuffles,
-          difficulty: info[difficulty]
+          difficulty: "hard"
         }
       },
         console.log('send'))

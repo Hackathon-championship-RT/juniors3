@@ -51,7 +51,7 @@ export default {
       if (this.nickname) {
         window.localStorage.setItem('nickname', this.nickname)
         this.used = !this.used
-        $emit('send')
+        this.$emit('send')
 
 
       }
